@@ -41,9 +41,9 @@ func (m *MDBPool) Collection(collection string) *MongoCollection {
 	}
 }
 
-func NewClient(ct ClientOpts) *MDBPool {
+func NewClient(ct *ClientOpts) *MDBPool {
 	mdb := &MDBPool{
-		clientOpts: &ct,
+		clientOpts: ct,
 	}
 
 	mdb.initMongoDB()
