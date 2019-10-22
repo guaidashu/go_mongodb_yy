@@ -1,0 +1,1 @@
+# Go Mongodb designed by yy.
