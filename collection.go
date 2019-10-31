@@ -86,7 +86,7 @@ func (m *MongoCollection) ReplaceOne(filter interface{},
 	return
 }
 
-func (m *MongoCollection) Aggregate(ctx context.Context, pipeline interface{},
+func (m *MongoCollection) Aggregate(pipeline interface{},
 	opts ...*options.AggregateOptions) (result *mongo.Cursor, err error) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -96,7 +96,7 @@ func (m *MongoCollection) Aggregate(ctx context.Context, pipeline interface{},
 	return
 }
 
-func (m *MongoCollection) CountDocuments(ctx context.Context, filter interface{},
+func (m *MongoCollection) CountDocuments(filter interface{},
 	opts ...*options.CountOptions) (result int64, err error) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -106,8 +106,7 @@ func (m *MongoCollection) CountDocuments(ctx context.Context, filter interface{}
 	return
 }
 
-func (m *MongoCollection) EstimatedDocumentCount(ctx context.Context,
-	opts ...*options.EstimatedDocumentCountOptions) (result int64, err error) {
+func (m *MongoCollection) EstimatedDocumentCount(opts ...*options.EstimatedDocumentCountOptions) (result int64, err error) {
 
 	m.Exec(func(collection *mongo.Collection) {
 		result, err = collection.EstimatedDocumentCount(m.Ctx, opts...)
@@ -116,7 +115,7 @@ func (m *MongoCollection) EstimatedDocumentCount(ctx context.Context,
 	return
 }
 
-func (m *MongoCollection) Find(ctx context.Context, filter interface{},
+func (m *MongoCollection) Find(filter interface{},
 	opts ...*options.FindOptions) (result *mongo.Cursor, err error) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -126,7 +125,7 @@ func (m *MongoCollection) Find(ctx context.Context, filter interface{},
 	return
 }
 
-func (m *MongoCollection) FindOne(ctx context.Context, filter interface{},
+func (m *MongoCollection) FindOne(filter interface{},
 	opts ...*options.FindOneOptions) (result *mongo.SingleResult) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -136,7 +135,7 @@ func (m *MongoCollection) FindOne(ctx context.Context, filter interface{},
 	return
 }
 
-func (m *MongoCollection) FindOneAndDelete(ctx context.Context, filter interface{},
+func (m *MongoCollection) FindOneAndDelete(filter interface{},
 	opts ...*options.FindOneAndDeleteOptions) (result *mongo.SingleResult) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -146,7 +145,7 @@ func (m *MongoCollection) FindOneAndDelete(ctx context.Context, filter interface
 	return
 }
 
-func (m *MongoCollection) FindOneAndUpdate(ctx context.Context, filter interface{},
+func (m *MongoCollection) FindOneAndUpdate(filter interface{},
 	update interface{}, opts ...*options.FindOneAndUpdateOptions) (result *mongo.SingleResult) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -156,7 +155,7 @@ func (m *MongoCollection) FindOneAndUpdate(ctx context.Context, filter interface
 	return
 }
 
-func (m *MongoCollection) FindOneAndReplace(ctx context.Context, filter interface{},
+func (m *MongoCollection) FindOneAndReplace(filter interface{},
 	replacement interface{}, opts ...*options.FindOneAndReplaceOptions) (result *mongo.SingleResult) {
 
 	m.Exec(func(collection *mongo.Collection) {
@@ -166,7 +165,7 @@ func (m *MongoCollection) FindOneAndReplace(ctx context.Context, filter interfac
 	return
 }
 
-func (m *MongoCollection) Watch(ctx context.Context, pipeline interface{},
+func (m *MongoCollection) Watch(pipeline interface{},
 	opts ...*options.ChangeStreamOptions) (result *mongo.ChangeStream, err error) {
 
 	m.Exec(func(collection *mongo.Collection) {
