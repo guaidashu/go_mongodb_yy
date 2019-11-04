@@ -96,6 +96,8 @@ func (m *MongoCollection) Aggregate(pipeline interface{},
 	return
 }
 
+// CountDocuments gets the number of documents matching the filter.
+// For a fast count of the total documents in a collection see EstimatedDocumentCount.
 func (m *MongoCollection) CountDocuments(filter interface{},
 	opts ...*options.CountOptions) (result int64, err error) {
 
@@ -115,6 +117,16 @@ func (m *MongoCollection) EstimatedDocumentCount(opts ...*options.EstimatedDocum
 	return
 }
 
+// Usage
+// findOptions := &options.FindOptions{}
+// findOptions.SetLimit(int64(count))
+// findOptions.SetSkip(int64(offset))
+// 排序
+// findOptions.SetSort(bson.M{"order": 1})
+// if cur, err = collection.Find(condition, findOptions); err != nil {
+//	 err = libs.NewReportError(err)
+//	 return
+// }
 func (m *MongoCollection) Find(filter interface{},
 	opts ...*options.FindOptions) (result *mongo.Cursor, err error) {
 
@@ -175,6 +187,7 @@ func (m *MongoCollection) Watch(pipeline interface{},
 	return
 }
 
+// Get origin database connect
 func (m *MongoCollection) Database() (db *mongo.Database) {
 	m.Exec(func(collection *mongo.Collection) {
 		db = collection.Database()
@@ -182,6 +195,7 @@ func (m *MongoCollection) Database() (db *mongo.Database) {
 	return
 }
 
+// All func which belong to collection will call this func to get result.
 func (m *MongoCollection) Exec(fun func(collection *mongo.Collection)) {
 	db := <-m.mdbPool.pool
 
