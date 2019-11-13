@@ -195,6 +195,14 @@ func (m *MongoCollection) Database() (db *mongo.Database) {
 	return
 }
 
+// Delete this collection
+func (m *MongoCollection) Drop() (err error) {
+	m.Exec(func(collection *mongo.Collection) {
+		err = collection.Drop(m.Ctx)
+	})
+	return
+}
+
 // All func which belong to collection will call this func to get result.
 func (m *MongoCollection) Exec(fun func(collection *mongo.Collection)) {
 	db := <-m.mdbPool.pool
